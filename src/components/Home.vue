@@ -8,9 +8,12 @@
       <p id="username">{{this.$store.getters.getUsername}}</p>
     </div>
     <div id="menu">
-        <Menu :theme="theme3" active-name="1">
+        <Menu 
+        active-name="1"
+        @on-select="getTodoList" 
+        >
         <MenuGroup title="导航">
-            <MenuItem name="1">
+            <MenuItem name="1" @on-select="getTodoList">
                 <Icon type="md-document" />
                 todolist
             </MenuItem>
@@ -39,6 +42,10 @@ export default {
     },
     cancel() {
       this.$Message.info("Clicked cancel");
+    },
+    getTodoList(name){
+        window.console.log(name);
+        this.$router.push("/todolist");
     }
   }
 };
@@ -52,9 +59,8 @@ export default {
   float: left;
 }
 #username {
-
   margin-top:50px; 
-  margin-right:50px;
+  margin-right:100px;
   float: right;
 } 
 #menu {
