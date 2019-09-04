@@ -7,7 +7,7 @@
     <br />
     <ol>
       <li 
-      v-for="msg in getMessagesFromStore"
+      v-for="msg in getMessagesFromStore()"
       v-bind:key="msg"
       >{{msg}}</li>
     </ol>
@@ -39,7 +39,6 @@ export default {
     },
     methods:{
         commitMessage(){
-           
             this.$store.commit("updateMessage",this.message);
         },
         getMessagesFromStore(){
