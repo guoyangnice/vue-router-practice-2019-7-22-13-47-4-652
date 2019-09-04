@@ -1,31 +1,29 @@
 <template>
   <div id="home">
-    <button @click="back" id="back">返回</button>
+    <button type="primary" @click="modal1=true" id="back">返回</button>
+    <Modal v-model="modal1" 
+        title="Common Modal dialog box title" 
+        @on-ok="ok" 
+        @on-cancel="cancel">
+    </Modal>
   </div>
 </template>
 
 <script>
 export default {
   name: "Home",
+  data(){
+      return {
+          modal1:false
+      }
+  },
   methods: {
-      
-    back() {
-        this.$dialog.options = {
-            okText: '确定',
-            cancelText: '取消',
-        }
-        ,
-      this.$dialog
-        .confirm("请确认您的选择",this.$dialog.options)
-        .then(function() {
-          // 点击确定执行
-          window.console.log("确定");
-          this.$router.push('/main');
-        })
-        .catch(function() {
-          // 点击取消执行
-          window.console.log("取消");
-        });
+    ok() {
+      this.$Message.info("Clicked ok");
+      this.$router.push('/main')
+    },
+    cancel() {
+      this.$Message.info("Clicked cancel");
     }
   }
 };
