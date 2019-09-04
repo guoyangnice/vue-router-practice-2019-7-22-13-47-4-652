@@ -2,11 +2,14 @@
     <div class="container">
     <div>
       <input class="input-text" type="text" name="ListItem" v-model="message" />
-      <div id="button" v-on:click="commitMessage">Add</div>
+      <button id="button" @click="commitMessage">Add</button>
     </div>
     <br />
     <ol>
-      <li>{{this.$store.getters.getMessages}}</li>
+      <li 
+      v-for="msg in getMessagesFromStore"
+      v-bind:key="msg"
+      >{{msg}}</li>
     </ol>
     <div>
       <ul id="filters">
@@ -25,8 +28,25 @@
 </template>
 
 <script>
+import store from "@/store/store";
 export default {
-    
+    name:"Todolist",
+    store,
+    data(){
+        return {
+            message:""
+        }
+    },
+    methods:{
+        commitMessage(){
+           
+            this.$store.commit("updateMessage",this.message);
+        },
+        getMessagesFromStore(){
+            window.console.log(this.$store.getters.getMessages);
+            return this.$store.getters.getMessages;
+        }
+    }
 }
 </script>
 
