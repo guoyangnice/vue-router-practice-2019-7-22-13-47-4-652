@@ -24,6 +24,7 @@
         </MenuGroup>
         </Menu>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -45,7 +46,7 @@ export default {
     },
     getTodoList(name){
         window.console.log(name);
-        this.$router.push("/todolist");
+        this.$router.push("/home/todolist");
     }
   }
 };

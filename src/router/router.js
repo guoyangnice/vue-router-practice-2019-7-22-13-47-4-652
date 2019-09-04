@@ -23,8 +23,18 @@ var router =  new VueRouter({
             component:HelloWorld
         },
         {
-            path:'/todolist',
-            component:Todolist
+            path:'/home',
+            component:Todolist,
+            children:[
+                {
+                    path:'todolist',
+                    component:Todolist
+                },
+                {
+                    path:'hello',
+                    component:HelloWorld
+                }
+            ]
         }
     ]
 })
